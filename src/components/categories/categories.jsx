@@ -1,5 +1,6 @@
 import CategoryItem from "../category-item/category-item";
-import { categoriesPropTypes } from "../../categories-proptypes";
+import { categoriesPropTypes } from "../../proptype";
+import "./categories.scss";
 
 function Categories({ categories }) {
   return (

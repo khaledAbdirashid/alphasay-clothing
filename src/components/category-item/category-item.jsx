@@ -1,5 +1,5 @@
 import "./category-item.scss";
-import { categoryItemPropTypes } from "../../categories-proptypes";
+import { categoryItemPropTypes } from "../../proptype";
 
 function CategoryItem({ category }) {
   const { imageUrl, title } = category;
