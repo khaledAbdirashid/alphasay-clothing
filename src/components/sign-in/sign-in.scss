@@ -1,0 +1,16 @@
+.or-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-text {
+  margin: 0 10px;
+}

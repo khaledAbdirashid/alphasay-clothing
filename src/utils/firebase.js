@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore, setDoc, getDoc, doc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -25,7 +31,8 @@ export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDoc = async (userAuth) => {
+export const createUserDoc = async (userAuth, additionalInfo) => {
+  if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
   const snapShot = await getDoc(userDocRef);
   if (!snapShot.exists()) {
@@ -36,6 +43,7 @@ export const createUserDoc = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInfo,
       });
     } catch (error) {
       console.log(error.message);
@@ -43,4 +51,14 @@ export const createUserDoc = async (userAuth) => {
   }
 
   return userDocRef;
+};
+
+export const createUserWithEmail = async (email, password) => {
+  if (!email || !password) return;
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInUserWithEmail = async (email, password) => {
+  if (!email || !password) return;
+  return signInWithEmailAndPassword(auth, email, password);
 };
