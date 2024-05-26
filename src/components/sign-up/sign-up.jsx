@@ -9,7 +9,6 @@ import Button from "../common/button/button";
 function SignUpForm() {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const navigate = useNavigate();
-
   const navigateToSignInPage = () => {
     navigate("/signin");
   };
@@ -69,7 +68,7 @@ function SignUpForm() {
           type="text"
           id="displayName"
           register={register}
-          error={errors.displayName && "DisplayName is required"}
+          error={errors.displayName && "Username is required"}
         />
 
         <FormInput
@@ -87,7 +86,7 @@ function SignUpForm() {
           register={register}
           error={
             errors.password &&
-            "Password is required and must be at least 6 characters"
+            "Password is required and must be at least 8 characters"
           }
           onChange={handlePasswordChange}
         />
@@ -99,7 +98,7 @@ function SignUpForm() {
           register={register}
           error={
             errors.confirmpassword &&
-            "Password is required and must be at least 6 characters"
+            "Password is required and must be at least 8 characters"
           }
         />
 

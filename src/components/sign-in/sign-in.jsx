@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import {
   signInWithGooglePopUp,
-  createUserDoc,
   signInUserWithEmail,
 } from "../../utils/firebase";
 import FormInput from "../common/form-input/form-input";
@@ -18,12 +17,12 @@ function SignInForm() {
 
   const handleSignInWithGoogle = async () => {
     try {
-      const response = await signInWithGooglePopUp();
-      await createUserDoc(response.user);
+      await signInWithGooglePopUp();
     } catch (error) {
       console.log(error.message);
     }
   };
+
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {

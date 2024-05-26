@@ -26,3 +26,7 @@ export const buttonPropTypes = {
   children: PropTypes.node.isRequired,
   buttonType: PropTypes.oneOf(["google", "inverted"]).isRequired,
 };
+
+export const userContextPropTypes = {
+  children: PropTypes.node.isRequired,
+};
