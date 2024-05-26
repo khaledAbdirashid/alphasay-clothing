@@ -5,9 +5,7 @@
   letter-spacing: 0.5px;
   line-height: 50px;
   padding: 0 35px 0 35px;
-  font-size: 1.7rem;
-  background-color: black;
-  color: white;
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: bolder;
   border: none;
@@ -30,13 +28,23 @@
   }
   &.inverted {
     background-color: white;
-    width: 100%;
     color: black;
     border: 1px solid black;
     &:hover {
       background-color: black;
       color: white;
       border: none;
+    }
+  }
+  &.normal {
+    background-color: black;
+    color: white;
+    width: 100%;
+    border: 1px solid black;
+    &:hover {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
     }
   }
 }

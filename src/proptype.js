@@ -24,9 +24,15 @@ export const formInputPropTypes = {
 
 export const buttonPropTypes = {
   children: PropTypes.node.isRequired,
-  buttonType: PropTypes.oneOf(["google", "inverted"]).isRequired,
+  buttonType: PropTypes.oneOf(["google", "inverted", "normal"]).isRequired,
 };
 
-export const userContextPropTypes = {
+export const contextPropTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export const productCardPropTypes = PropTypes.shape({
+  imageUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+}).isRequired;

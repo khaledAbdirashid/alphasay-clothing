@@ -102,7 +102,7 @@ function SignUpForm() {
           }
         />
 
-        <Button type="submit" buttonType="inverted">
+        <Button type="submit" buttonType="normal">
           Sign Up
         </Button>
         <p className="sign-in-link">

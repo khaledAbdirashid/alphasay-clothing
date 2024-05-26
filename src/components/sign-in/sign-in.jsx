@@ -65,8 +65,8 @@ function SignInForm() {
           error={errors.password && "Password is required "}
         />
 
-        <Button type="submit" buttonType="inverted">
-          SIGNIN
+        <Button type="submit" buttonType="normal">
+          SIGN IN
         </Button>
 
         <div className="or-divider">

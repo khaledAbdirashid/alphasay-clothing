@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 
-import { userContextPropTypes } from "../proptype";
+import { contextPropTypes } from "../proptype";
 import { onAuthStateChangeListener, createUserDoc } from "../utils/firebase";
 
 //actual data you want to access
@@ -11,7 +11,7 @@ export const UserContext = createContext({
 });
 
 //the actual component that provides the context
-export function UserProvider({ children }) {
+export function UserContextProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
   useEffect(() => {
@@ -27,4 +27,4 @@ export function UserProvider({ children }) {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
-UserProvider.propTypes = userContextPropTypes;
+UserContextProvider.propTypes = contextPropTypes;
