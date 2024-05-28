@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./sign-up.scss";
 import { createUserDoc, createUserWithEmail } from "../../utils/firebase";
 import FormInput from "../common/form-input/form-input";
@@ -58,7 +59,7 @@ function SignUpForm() {
   };
 
   return (
-    <div className="form-container">
+    <>
       {!passwordMatch && (
         <div className="alert">Passwords do not match please try again</div>
       )}
@@ -110,7 +111,7 @@ function SignUpForm() {
           <a onClick={navigateToSignInPage}>Sign in</a>
         </p>
       </form>
-    </div>
+    </>
   );
 }
 

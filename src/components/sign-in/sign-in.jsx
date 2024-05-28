@@ -47,47 +47,45 @@ function SignInForm() {
   };
 
   return (
-    <div className="form-container">
-      <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          label="Email"
-          type="email"
-          id="email"
-          register={register}
-          error={errors.email && "Email is required"}
-        />
+    <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
+      <FormInput
+        label="Email"
+        type="email"
+        id="email"
+        register={register}
+        error={errors.email && "Email is required"}
+      />
 
-        <FormInput
-          label="Password"
-          type="password"
-          id="password"
-          register={register}
-          error={errors.password && "Password is required "}
-        />
+      <FormInput
+        label="Password"
+        type="password"
+        id="password"
+        register={register}
+        error={errors.password && "Password is required "}
+      />
 
-        <Button type="submit" buttonType="normal">
-          SIGN IN
-        </Button>
+      <Button type="submit" buttonType="normal">
+        SIGN IN
+      </Button>
 
-        <div className="or-divider">
-          <div className="line"></div>
-          <div className="or-text">or</div>
-          <div className="line"></div>
-        </div>
+      <div className="or-divider">
+        <div className="line"></div>
+        <div className="or-text">or</div>
+        <div className="line"></div>
+      </div>
 
-        <Button
-          type="button"
-          buttonType="google"
-          onClick={handleSignInWithGoogle}
-        >
-          GOOGLESIGNIN
-        </Button>
+      <Button
+        type="button"
+        buttonType="google"
+        onClick={handleSignInWithGoogle}
+      >
+        GOOGLESIGNIN
+      </Button>
 
-        <p className="sign-in-link">
-          Dont have an account? <Link to="/auth">Sign Up</Link>
-        </p>
-      </form>
-    </div>
+      <p className="sign-in-link">
+        Dont have an account? <Link to="/auth">Sign Up</Link>
+      </p>
+    </form>
   );
 }
 
