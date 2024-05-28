@@ -44,3 +44,8 @@ export const cartItemPropTypes = PropTypes.shape({
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
 }).isRequired;
+
+export const categoryPreviewPropTypes = {
+  title: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

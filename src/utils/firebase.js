@@ -8,7 +8,17 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, setDoc, getDoc, doc } from "firebase/firestore";
+
+import {
+  getFirestore,
+  setDoc,
+  getDoc,
+  doc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBmY5tyj57O65uNOf_xoj1o-UYhZUjzzf8",
@@ -69,3 +79,30 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangeListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+  const querySnapShot = await getDocs(q);
+  const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot) => {
+    const { title, items } = docSnapShot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
+};

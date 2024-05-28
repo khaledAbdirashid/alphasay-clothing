@@ -3,6 +3,7 @@ import Button from "../common/button/button";
 import { productCardPropTypes } from "../../proptype";
 import { useContext } from "react";
 import { CartContext } from "../../context/cartcontext";
+
 function ProductCard({ product }) {
   const { imageUrl, name, price } = product;
   const { addItemToCart } = useContext(CartContext);
