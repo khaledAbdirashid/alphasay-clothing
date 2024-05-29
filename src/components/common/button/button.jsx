@@ -1,20 +1,21 @@
 import { buttonPropTypes } from "../../../proptype";
-import "./button.scss";
-const BUTTON_TYPES_CLASSES = {
-  google: "google-sign-in",
-  inverted: "inverted",
-  normal: "normal",
+import {
+  BaseButton,
+  GoogleSignInButton,
+  NormalButton,
+  InvertedButton,
+} from "./button.styles.js";
+
+const BUTTON_TYPES_COMPONENT = {
+  base: BaseButton,
+  google: GoogleSignInButton,
+  inverted: InvertedButton,
+  normal: NormalButton,
 };
 
 function Button({ children, buttonType, ...otherProps }) {
-  return (
-    <button
-      className={`${BUTTON_TYPES_CLASSES[buttonType]} button-container`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
+  const ButtonComponent = BUTTON_TYPES_COMPONENT[buttonType] || BaseButton;
+  return <ButtonComponent {...otherProps}>{children}</ButtonComponent>;
 }
 
 Button.propTypes = buttonPropTypes;

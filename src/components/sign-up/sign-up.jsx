@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./sign-up.scss";
 import { createUserDoc, createUserWithEmail } from "../../utils/firebase";
 import FormInput from "../common/form-input/form-input";
 import Button from "../common/button/button";
+import { Alert, SignInLink, SignUpFormContainer } from "./sign-up.styles";
 
 function SignUpForm() {
   const [passwordMatch, setPasswordMatch] = useState(true);
@@ -59,11 +59,9 @@ function SignUpForm() {
   };
 
   return (
-    <>
-      {!passwordMatch && (
-        <div className="alert">Passwords do not match please try again</div>
-      )}
-      <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
+    <SignUpFormContainer>
+      {!passwordMatch && <Alert>Passwords do not match please try again</Alert>}
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label="Username"
           type="text"
@@ -106,12 +104,12 @@ function SignUpForm() {
         <Button type="submit" buttonType="normal">
           Sign Up
         </Button>
-        <p className="sign-in-link">
+        <SignInLink>
           Already have an account?
           <a onClick={navigateToSignInPage}>Sign in</a>
-        </p>
+        </SignInLink>
       </form>
-    </>
+    </SignUpFormContainer>
   );
 }
 

@@ -5,9 +5,9 @@ import {
   signInUserWithEmail,
 } from "../../utils/firebase";
 import FormInput from "../common/form-input/form-input";
-import "./sign-in.scss";
 import Button from "../common/button/button";
-
+import { Line, OrDivider, OrText } from "./sign-in.styles";
+import { SignInLink, SignUpFormContainer } from "../sign-up/sign-up.styles";
 function SignInForm() {
   const {
     register,
@@ -47,45 +47,47 @@ function SignInForm() {
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
-      <FormInput
-        label="Email"
-        type="email"
-        id="email"
-        register={register}
-        error={errors.email && "Email is required"}
-      />
+    <SignUpFormContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          label="Email"
+          type="email"
+          id="email"
+          register={register}
+          error={errors.email && "Email is required"}
+        />
 
-      <FormInput
-        label="Password"
-        type="password"
-        id="password"
-        register={register}
-        error={errors.password && "Password is required "}
-      />
+        <FormInput
+          label="Password"
+          type="password"
+          id="password"
+          register={register}
+          error={errors.password && "Password is required "}
+        />
 
-      <Button type="submit" buttonType="normal">
-        SIGN IN
-      </Button>
+        <Button type="submit" buttonType="normal">
+          SIGN IN
+        </Button>
 
-      <div className="or-divider">
-        <div className="line"></div>
-        <div className="or-text">or</div>
-        <div className="line"></div>
-      </div>
+        <OrDivider>
+          <Line></Line>
+          <OrText>or</OrText>
+          <Line></Line>
+        </OrDivider>
 
-      <Button
-        type="button"
-        buttonType="google"
-        onClick={handleSignInWithGoogle}
-      >
-        GOOGLESIGNIN
-      </Button>
+        <Button
+          type="button"
+          buttonType="google"
+          onClick={handleSignInWithGoogle}
+        >
+          GOOGLESIGNIN
+        </Button>
 
-      <p className="sign-in-link">
-        Dont have an account? <Link to="/auth">Sign Up</Link>
-      </p>
-    </form>
+        <SignInLink>
+          Dont have an account? <Link to="/auth">Sign Up</Link>
+        </SignInLink>
+      </form>
+    </SignUpFormContainer>
   );
 }
 
