@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import ShoppingSvg from "../../assets/shopping-bag.svg";
 
-export const ShoppingIcon = styled.div`
+export const ShoppingIcon = styled.img.attrs({
+  src: ShoppingSvg,
+  alt: "Shopping Bag Icon",
+})`
   width: 24px;
   height: 24px;
-  background-image: url(${ShoppingSvg});
 `;
-
 export const ItemCount = styled.span`
   position: absolute;
   font-size: 10px;
