@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   signInWithGooglePopUp,
   signInUserWithEmail,
@@ -14,10 +14,15 @@ function SignInForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+  const navigateToShopPage = () => {
+    navigate("/shop");
+  };
 
   const handleSignInWithGoogle = async () => {
     try {
       await signInWithGooglePopUp();
+      navigateToShopPage();
     } catch (error) {
       console.log(error.message);
     }
@@ -26,8 +31,8 @@ function SignInForm() {
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
-      const response = await signInUserWithEmail(email, password);
-      console.log(response);
+      await signInUserWithEmail(email, password);
+      navigateToShopPage();
     } catch (error) {
       let errorMessage = "Error signing in: ";
       switch (error.code) {
