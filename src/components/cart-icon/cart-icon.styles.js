@@ -5,7 +5,6 @@ export const ShoppingIcon = styled.div`
   width: 24px;
   height: 24px;
   background-image: url(${ShoppingSvg});
-  background-size: cover;
 `;
 
 export const ItemCount = styled.span`
