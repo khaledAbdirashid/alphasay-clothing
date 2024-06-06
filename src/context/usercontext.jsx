@@ -1,18 +1,37 @@
-import { useEffect, useState } from "react";
-import { createContext } from "react";
+import { useEffect, useReducer, createContext } from "react";
 
 import { contextPropTypes } from "../proptype";
 import { onAuthStateChangeListener, createUserDoc } from "../utils/firebase";
+import { createAction } from "../utils/reducer";
 
-//actual data you want to access
 export const UserContext = createContext({
   setCurrentUser: () => null,
   currentUser: null,
 });
 
-//the actual component that provides the context
+const InitialState = {
+  currentUser: null,
+};
+
+const UserReducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case "SET_CURRENT_USER":
+      return {
+        ...state,
+        currentUser: payload,
+      };
+    default:
+      throw new Error(`unhandled type error of ${type}`);
+  }
+};
+
 export function UserContextProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [state, dispatch] = useReducer(UserReducer, InitialState);
+  const { currentUser } = state;
+  const setCurrentUser = (user) => {
+    dispatch(createAction("SET_CURRENT_USER", user));
+  };
   const value = { currentUser, setCurrentUser };
   useEffect(() => {
     const unSubscribe = onAuthStateChangeListener((user) => {
